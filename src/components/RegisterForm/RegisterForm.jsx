@@ -1,20 +1,45 @@
-import React from 'react';
+import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 
-export default function RegisterForm() {
+import { Input } from 'components/common/Input/Input.styled';
+import { FormBtn } from 'components/ContactForm/ContactForm.styled';
+import React from 'react';
+import { register } from 'redux/user/operations';
+
+export function RegisterForm() {
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const dispatch = useDispatch();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    const formData = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+    console.log(formData);
+    dispatch(register(formData));
+    // e.target.reset();
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>
         Name
-        <input />
+        <Input ref={nameRef} />
       </label>
       <label>
         Email
-        <input />
+        <Input ref={emailRef} />
       </label>
       <label>
         Password
-        <input />
+        <Input ref={passwordRef} />
       </label>
+      <FormBtn type="submit">Submit</FormBtn>
     </form>
   );
 }

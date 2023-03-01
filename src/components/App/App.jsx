@@ -15,6 +15,7 @@ import {
 
 import { getContacts } from 'redux/contacts/operations';
 import { selectContacts, selectLoading } from 'redux/contacts/selectors';
+import { RegisterForm } from 'components/RegisterForm/RegisterForm';
 
 export function App() {
   const contacts = useSelector(selectContacts);
@@ -31,6 +32,7 @@ export function App() {
       <Section>
         <Container>
           <ContactForm />
+          <RegisterForm />
           <Header2>Contacts</Header2>
           <Searchbar />
 
