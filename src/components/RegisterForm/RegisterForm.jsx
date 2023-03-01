@@ -1,5 +1,20 @@
 import React from 'react';
 
 export default function RegisterForm() {
-  return <div>Register Form</div>;
+  return (
+    <form>
+      <label>
+        Name
+        <input />
+      </label>
+      <label>
+        Email
+        <input />
+      </label>
+      <label>
+        Password
+        <input />
+      </label>
+    </form>
+  );
 }
