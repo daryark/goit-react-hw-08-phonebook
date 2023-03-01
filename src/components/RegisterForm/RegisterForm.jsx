@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function RegisterForm() {
-  return <div></div>;
+  return <div>Register Form</div>;
 }
