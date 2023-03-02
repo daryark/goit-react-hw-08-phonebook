@@ -11,6 +11,7 @@ import { configureStore } from '@reduxjs/toolkit';
 // } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
 import { contactsReducer } from './contacts/contactsSlice';
+import { userReducer } from './user/userSlice';
 
 // const persistConfig = {
 //   key: 'contacts',
@@ -22,7 +23,7 @@ import { contactsReducer } from './contacts/contactsSlice';
 // const persistedContactsReducer = persistReducer(persistConfig, contactsReducer);
 
 export const store = configureStore({
-  reducer: { contactsData: contactsReducer },
+  reducer: { contactsData: contactsReducer, userData: userReducer },
   // middleware: getDefaultMiddleware =>
   //   getDefaultMiddleware({
   //     serializableCheck: {

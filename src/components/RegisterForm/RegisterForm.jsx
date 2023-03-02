@@ -1,45 +1,54 @@
-import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { Input } from 'components/common/Input/Input.styled';
-import { FormBtn } from 'components/ContactForm/ContactForm.styled';
 import React from 'react';
-import { register } from 'redux/user/operations';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
-export function RegisterForm() {
-  const nameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const dispatch = useDispatch();
+import Button from '@mui/material/Button';
+// import Input from '@mui/material/Input';
 
-  const handleSubmit = e => {
-    e.preventDefault();
+export function RegisterForm({ onSubmit, isSignUpForm = false }) {
+  const schema = yup
+    .object({
+      ...(isSignUpForm && { name: yup.string().min(2).max(20).required() }),
+      email: yup.string().email().required(),
+      password: yup.string().min(7).required(),
+    })
+    .required();
 
-    const formData = {
-      name: nameRef.current.value,
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    };
-    console.log(formData);
-    dispatch(register(formData));
-    // e.target.reset();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const registerSubmit = data => {
+    console.log('errors', errors);
+    console.log(data);
+    onSubmit(data);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name
-        <Input ref={nameRef} />
-      </label>
+    <form onSubmit={handleSubmit(registerSubmit)}>
+      {/* <Input /> */}
+      {isSignUpForm && (
+        <label>
+          Name
+          <input {...register('name')} />
+        </label>
+      )}
       <label>
         Email
-        <Input ref={emailRef} />
+        <input {...register('email')} />
       </label>
       <label>
         Password
-        <Input ref={passwordRef} />
+        <input {...register('password')} />
       </label>
-      <FormBtn type="submit">Submit</FormBtn>
+      <Button type="submit" variant="outlined">
+        Submit
+      </Button>
     </form>
   );
 }

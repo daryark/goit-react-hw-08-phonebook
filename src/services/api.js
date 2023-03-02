@@ -21,7 +21,7 @@ const authInterceptor = config => {
 $privateHost.interceptors.request.use(authInterceptor);
 
 export const userAPI = {
-  async register(formData) {
+  async registerUser(formData) {
     const { data } = await $publicHost.post('/users/signup', formData);
     return data;
   },

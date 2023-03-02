@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { userAPI } from '../../services/api';
 
-export const register = createAsyncThunk(
-  'user/register',
+export const registerUser = createAsyncThunk(
+  'user/registerUser',
   async (formData, thunkApi) => {
     try {
-      const data = await userAPI.register(formData);
+      const data = await userAPI.registerUser(formData);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

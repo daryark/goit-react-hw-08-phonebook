@@ -1,50 +1,26 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { lazy } from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
-import {
-  ContactList,
-  ContactForm,
-  Section,
-  Container,
-  Header2,
-  Notification,
-  Searchbar,
-  Header,
-  Loader,
-} from 'components';
+import Layout from 'components/common/Layout/Layout';
+import { routes } from 'routes';
 
-import { getContacts } from 'redux/contacts/operations';
-import { selectContacts, selectLoading } from 'redux/contacts/selectors';
-import { RegisterForm } from 'components/RegisterForm/RegisterForm';
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const ContactsPage = lazy(() => import('pages/ContactsPage/ContactsPage'));
+const SignInPage = lazy(() => import('pages/SignInPage/SignInPage'));
+const SignUpPage = lazy(() => import('pages/SignUpPage/SignUpPage'));
 
 export function App() {
-  const contacts = useSelector(selectContacts);
-  const loading = useSelector(selectLoading);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getContacts());
-  }, [dispatch]);
   return (
     <>
-      <Header />
-
-      <Section>
-        <Container>
-          <ContactForm />
-          <RegisterForm />
-          <Header2>Contacts</Header2>
-          <Searchbar />
-
-          {!contacts.length && !loading && (
-            <Notification>
-              You don't have contacts yet, add somebody!
-            </Notification>
-          )}
-          {Boolean(contacts.length) && <ContactList />}
-        </Container>
-      </Section>
-      {loading && <Loader />}
+      <Routes>
+        <Route path={routes.HOME} element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path={routes.CONTACTS_PAGE} element={<ContactsPage />}></Route>
+          <Route path={routes.SIGN_IN} element={<SignInPage />} />
+          <Route path={routes.SIGN_UP} element={<SignUpPage />} />
+          <Route path="*" element={<Navigate to={routes.HOME} />} />
+        </Route>
+      </Routes>
     </>
   );
 }
