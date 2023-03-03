@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://63fcff2a8ef914c555a3c3cc.mockapi.io';
-// axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+//
+//
 
 const $publicHost = axios.create({
   baseURL: 'https://connections-api.herokuapp.com',
@@ -13,6 +14,7 @@ const $privateHost = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
+//c: add token save to localStorage
 const authInterceptor = config => {
   config.headers['Authorization'] = localStorage.getItem('token');
   return config;
@@ -25,7 +27,7 @@ export const userAPI = {
     const { data } = await $publicHost.post('/users/signup', formData);
     return data;
   },
-  async login(formData) {
+  async loginUser(formData) {
     const { data } = await $privateHost.post('/users/login', formData);
     return data;
   },

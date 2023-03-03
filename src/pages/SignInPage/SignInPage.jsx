@@ -2,11 +2,11 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
-import { registerUser } from 'redux/user/operations';
+import { loginUser } from 'redux/user/operations';
 
 export default function SignInPage() {
   const dispatch = useDispatch();
-  const handleLogin = data => dispatch(registerUser(data));
+  const handleLogin = data => dispatch(loginUser(data));
 
   return <RegisterForm onSubmit={handleLogin} />;
 }

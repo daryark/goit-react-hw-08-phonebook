@@ -12,3 +12,15 @@ export const registerUser = createAsyncThunk(
     }
   }
 );
+
+export const loginUser = createAsyncThunk(
+  'user/loginUser',
+  async (formData, thunkApi) => {
+    try {
+      const data = await userAPI.loginUser(formData);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
