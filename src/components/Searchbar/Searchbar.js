@@ -1,18 +1,15 @@
-// import { Input, Search } from 'components/common/Input/Input.styled';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilterValue } from 'redux/contacts/contactsSlice';
+import { selectContacts } from 'redux/contacts/selectors';
+
 import { SearchRounded } from '@mui/icons-material';
-import { InputOutlined } from '@mui/icons-material';
 import {
   FormControl,
   InputAdornment,
   OutlinedInput,
   InputLabel,
 } from '@mui/material';
-
-import React from 'react';
-import { FaSearch } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
-import { setFilterValue } from 'redux/contacts/contactsSlice';
-import { selectContacts } from 'redux/contacts/selectors';
 
 export function Searchbar() {
   const contacts = useSelector(selectContacts);

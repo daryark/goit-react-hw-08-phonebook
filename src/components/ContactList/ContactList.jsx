@@ -4,6 +4,7 @@ import { FaRegTrashAlt } from 'react-icons/fa';
 import { selectFilteredContacts } from 'redux/contacts/selectors';
 import { deleteContact } from 'redux/contacts/operations';
 import { Button } from '@mui/material';
+import { ContactInfo, ContactItem } from './ContactList.styled';
 
 // import { ContactInfo, ContactItem, DeleteBtn } from './ContactList.styled';
 // import { Notification } from 'components/common/Notification/Notification.styled';
@@ -21,10 +22,10 @@ export const ContactList = () => {
       {Boolean(filteredContacts.length) ? (
         <ul>
           {filteredContacts.map(({ name, phone, id }) => (
-            <li key={id}>
+            <ContactItem key={id}>
               <div>
-                <span>{name}</span>
-                <span>{phone}</span>
+                <ContactInfo>{name}</ContactInfo>
+                <ContactInfo>{phone}</ContactInfo>
               </div>
               <Button
                 variant="outlined"
@@ -33,7 +34,7 @@ export const ContactList = () => {
               >
                 <FaRegTrashAlt />
               </Button>
-            </li>
+            </ContactItem>
           ))}
         </ul>
       ) : (

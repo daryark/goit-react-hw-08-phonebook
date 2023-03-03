@@ -1,19 +1,20 @@
-// import styled from 'styled-components';
+import styled from '@emotion/styled';
 
-// export const ContactInfo = styled.p`
-//   font-size: ${p => p.theme.fontSizes.m}px;
-//   margin-right: ${p => p.theme.spaces[4]}px;
-//   display: inline-block;
-// `;
+export const ContactInfo = styled.p`
+  font-size: large;
+  padding: 15px;
+  display: inline-block;
+`;
 
-// export const ContactItem = styled.li`
-//   border-bottom: 1px solid ${li => li.theme.colors.secondary};
-//   padding: 0 ${li => li.theme.spaces[5]}px;
-
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-// `;
+export const ContactItem = styled.li`
+  border-bottom: 1px solid grey;
+  /* padding-right: 15px;
+  padding-left: 0; */
+  display: flex;
+  align-items: center;
+  /* gap: 100px; */
+  justify-content: space-between;
+`;
 
 // export const DeleteBtn = styled.button`
 //   padding: ${button => button.theme.spaces[4]}px;

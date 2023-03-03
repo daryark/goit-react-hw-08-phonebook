@@ -50,7 +50,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+      <FormControl sx={{ m: 1, width: '30ch' }} variant="outlined">
         <InputLabel htmlFor="outlined-adornment-name">Name</InputLabel>
         <OutlinedInput
           // {...register('name')}
@@ -70,7 +70,7 @@ export function ContactForm() {
           required
         />
       </FormControl>
-      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+      <FormControl sx={{ m: 1, ml: 0, width: '30ch' }} variant="outlined">
         <InputLabel htmlFor="outlined-adornment-number">Number</InputLabel>
         <OutlinedInput
           // {...register('number')}

@@ -1,13 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, registerUser } from './operations';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { loginUser, logoutUser, registerUser } from './operations';
 
 const initialState = {
   user: { name: null, email: null },
-  // token: null,
   isLoggedIn: false,
   isRefreshing: false,
   error: false,
   isLoading: true,
+};
+const extraActions = [registerUser, loginUser, logoutUser];
+const getActions = type => extraActions.map(action => action[type]);
+
+const handlePending = state => {
+  state.error = false;
+  state.isLoading = true;
+};
+
+const handleRejected = state => {
+  state.error = true;
+  state.isLoading = false;
 };
 
 const userSlice = createSlice({
@@ -17,34 +28,25 @@ const userSlice = createSlice({
     builder
       .addCase(registerUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        // state.token = action.payload.token;
+        state.isLoggedIn = true;
         state.isLoading = false;
         state.error = false;
-      })
-
-      .addCase(registerUser.pending, state => {
-        state.error = false;
-        state.isLoading = true;
-      })
-      .addCase(registerUser.rejected, (state, action) => {
-        state.error = true;
-        state.isLoading = false;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        // state.token = action.payload.token;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+        state.error = false;
+      })
+      .addCase(logoutUser.fulfilled, state => {
+        state.user = {};
+        state.isLoggedIn = false;
         state.isLoading = false;
         state.error = false;
       })
 
-      .addCase(loginUser.pending, state => {
-        state.error = false;
-        state.isLoading = true;
-      })
-      .addCase(loginUser.rejected, (state, action) => {
-        state.error = true;
-        state.isLoading = false;
-      });
+      .addMatcher(isAnyOf(...getActions('pending')), handlePending)
+      .addMatcher(isAnyOf(...getActions('rejected')), handleRejected);
   },
 });
 

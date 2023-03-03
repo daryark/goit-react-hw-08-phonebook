@@ -14,13 +14,13 @@ import { contactsReducer } from './contacts/contactsSlice';
 import { userReducer } from './user/userSlice';
 
 // const persistConfig = {
-//   key: 'contacts',
+//   key: 'user',
 //   version: 1,
 //   storage,
-//   blacklist: 'filter',
+//   whitelist: 'token',
 // };
 
-// const persistedContactsReducer = persistReducer(persistConfig, contactsReducer);
+// const persistedUserReducer = persistReducer(persistConfig, userReducer);
 
 export const store = configureStore({
   reducer: { contactsData: contactsReducer, userData: userReducer },

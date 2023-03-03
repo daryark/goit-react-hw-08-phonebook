@@ -28,7 +28,6 @@ export default function ContactsPages() {
       <section>
         <div>
           <ContactForm />
-          {/* <RegisterForm /> */}
           <h2>Contacts</h2>
           <Searchbar />
 

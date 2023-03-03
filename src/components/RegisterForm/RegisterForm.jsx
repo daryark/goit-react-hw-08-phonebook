@@ -10,6 +10,7 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
+  Box,
 } from '@mui/material';
 import {
   AccountCircleRounded,
@@ -49,10 +50,22 @@ export function RegisterForm({ onSubmit, isSignUpForm = false }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(registerSubmit)}>
-      {/* <Input /> */}
+    <Box
+      onSubmit={handleSubmit(registerSubmit)}
+      as="form"
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        mt: 2,
+      }}
+    >
+      {isSignUpForm ? <h1>Sign Up</h1> : <h1>Sign In</h1>}
       {isSignUpForm && (
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+        <FormControl
+          sx={{ m: 1, ml: 0, width: '30ch', display: 'block' }}
+          variant="outlined"
+        >
           <InputLabel htmlFor="outlined-adornment-name">Name</InputLabel>
           <OutlinedInput
             {...register('name')}
@@ -66,7 +79,10 @@ export function RegisterForm({ onSubmit, isSignUpForm = false }) {
           />
         </FormControl>
       )}
-      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+      <FormControl
+        sx={{ m: 1, ml: 0, width: '30ch', display: 'block' }}
+        variant="outlined"
+      >
         <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
         <OutlinedInput
           {...register('email')}
@@ -80,7 +96,10 @@ export function RegisterForm({ onSubmit, isSignUpForm = false }) {
         />
       </FormControl>
 
-      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+      <FormControl
+        sx={{ m: 1, ml: 0, width: '29.6ch', display: 'block' }}
+        variant="outlined"
+      >
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput
           {...register('password')}
@@ -102,9 +121,9 @@ export function RegisterForm({ onSubmit, isSignUpForm = false }) {
         />
       </FormControl>
 
-      <Button sx={{ m: 2, width: '10ch' }} type="submit" variant="outlined">
+      <Button sx={{ m: 2, width: '15ch' }} type="submit" variant="contained">
         Submit
       </Button>
-    </form>
+    </Box>
   );
 }
