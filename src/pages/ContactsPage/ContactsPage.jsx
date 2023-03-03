@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   ContactForm,
   ContactList,
-  Container,
-  Header2,
+  // Container,
+  // Header2,
   Loader,
-  Notification,
+  // Notification,
   Searchbar,
-  Section,
+  // Section,
 } from 'components';
 import { getContacts } from 'redux/contacts/operations';
 import { selectContacts, selectLoading } from 'redux/contacts/selectors';
@@ -25,21 +25,19 @@ export default function ContactsPages() {
 
   return (
     <>
-      <Section>
-        <Container>
+      <section>
+        <div>
           <ContactForm />
           {/* <RegisterForm /> */}
-          <Header2>Contacts</Header2>
+          <h2>Contacts</h2>
           <Searchbar />
 
           {!contacts.length && !loading && (
-            <Notification>
-              You don't have contacts yet, add somebody!
-            </Notification>
+            <p>You don't have contacts yet, add somebody!</p>
           )}
           {Boolean(contacts.length) && <ContactList />}
-        </Container>
-      </Section>
+        </div>
+      </section>
       {loading && <Loader />}
     </>
   );

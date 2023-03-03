@@ -3,9 +3,10 @@ import { FaRegTrashAlt } from 'react-icons/fa';
 
 import { selectFilteredContacts } from 'redux/contacts/selectors';
 import { deleteContact } from 'redux/contacts/operations';
+import { Button } from '@mui/material';
 
-import { ContactInfo, ContactItem, DeleteBtn } from './ContactList.styled';
-import { Notification } from 'components/common/Notification/Notification.styled';
+// import { ContactInfo, ContactItem, DeleteBtn } from './ContactList.styled';
+// import { Notification } from 'components/common/Notification/Notification.styled';
 
 export const ContactList = () => {
   const filteredContacts = useSelector(selectFilteredContacts);
@@ -20,19 +21,23 @@ export const ContactList = () => {
       {Boolean(filteredContacts.length) ? (
         <ul>
           {filteredContacts.map(({ name, phone, id }) => (
-            <ContactItem key={id}>
+            <li key={id}>
               <div>
-                <ContactInfo>{name}</ContactInfo>
-                <ContactInfo>{phone}</ContactInfo>
+                <span>{name}</span>
+                <span>{phone}</span>
               </div>
-              <DeleteBtn type="button" onClick={() => handleClickDelete(id)}>
+              <Button
+                variant="outlined"
+                type="button"
+                onClick={() => handleClickDelete(id)}
+              >
                 <FaRegTrashAlt />
-              </DeleteBtn>
-            </ContactItem>
+              </Button>
+            </li>
           ))}
         </ul>
       ) : (
-        <Notification>Sorry, no matches found</Notification>
+        <p>Sorry, no matches found</p>
       )}
     </>
   );
