@@ -21,7 +21,6 @@ export const getContacts = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const { data } = await axios.get('/contacts');
-      console.log('getContacts', data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -51,9 +50,8 @@ export const deleteContact = createAsyncThunk(
     try {
       const state = thunkApi.getState();
       token.set(state.userData.token);
-      console.log('id', id);
       const data = await axios.delete(`/contacts/${id}`, id);
-      console.log('data del', data);
+
       return data;
     } catch (error) {
       console.log(error.message);

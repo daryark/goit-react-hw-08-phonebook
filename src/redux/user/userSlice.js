@@ -22,6 +22,14 @@ const handleRejected = state => {
   state.isLoading = false;
 };
 
+// const handleFulfilledLogin = (state, action) => {
+//   state.user = action.payload.user;
+//   state.token = action.payload.token;
+//   state.isLoggedIn = true;
+//   state.isLoading = false;
+//   state.error = false;
+// };
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -48,6 +56,10 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = false;
       })
+      // .addMatcher(
+      //   isAnyOf(loginUser, registerUser).fulfilled,
+      //   handleFulfilledLogin
+      // )
 
       .addMatcher(isAnyOf(...getActions('pending')), handlePending)
       .addMatcher(isAnyOf(...getActions('rejected')), handleRejected);
