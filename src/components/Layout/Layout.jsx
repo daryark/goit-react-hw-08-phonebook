@@ -14,7 +14,7 @@ import { Box } from '@mui/system';
 export default function Layout() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const userData = useSelector(selectUserData);
-  console.log(userData);
+
   return (
     <>
       <Header>
@@ -39,7 +39,7 @@ export default function Layout() {
               {isLoggedIn ? (
                 <>
                   <p>
-                    Hello <b>{userData.user.name}</b>
+                    Hello <b>{userData.name}</b>
                   </p>
                   <div>
                     <StyledNavLink to={'/contacts'}>Contacts</StyledNavLink>

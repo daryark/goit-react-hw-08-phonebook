@@ -39,7 +39,6 @@ export function RegisterForm({ onSubmit, isSignUpForm = false }) {
 
   const registerSubmit = data => {
     console.log('errors', errors);
-    console.log(data);
     onSubmit(data);
   };
 

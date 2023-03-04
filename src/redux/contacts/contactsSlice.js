@@ -53,7 +53,6 @@ function rejectedHandler(state, action) {
   state.error = action.payload;
 }
 
-// Генератори екшенів
 export const { setFilterValue } = contactsSlice.actions;
-//Експорт налаштованого редюсеру слайсу
+
 export const contactsReducer = contactsSlice.reducer;
