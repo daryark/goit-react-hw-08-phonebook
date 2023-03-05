@@ -6,9 +6,6 @@ import { deleteContact } from 'redux/contacts/operations';
 import { Button, Typography } from '@mui/material';
 import { ContactInfo, ContactItem } from './ContactList.styled';
 
-// import { ContactInfo, ContactItem, DeleteBtn } from './ContactList.styled';
-// import { Notification } from 'components/common/Notification/Notification.styled';
-
 export const ContactList = () => {
   const filteredContacts = useSelector(selectFilteredContacts);
   const dispatch = useDispatch();

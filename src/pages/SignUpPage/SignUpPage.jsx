@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
+
 import { registerUser } from 'redux/user/operations';
 import { selectIsLoggedIn } from 'redux/user/selectors';
-import { useNavigate } from 'react-router-dom';
 
 export default function SignUpPage() {
   const isLoggedIn = useSelector(selectIsLoggedIn);

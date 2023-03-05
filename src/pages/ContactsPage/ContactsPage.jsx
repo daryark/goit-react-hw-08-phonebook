@@ -1,20 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  ContactForm,
-  ContactList,
-  // Container,
-  // Header2,
-  Loader,
-  // Notification,
-  Searchbar,
-  // Section,
-} from 'components';
+import WithAuthRedirect from 'HOC/WithAuthRedirect';
+import { ContactForm, ContactList, Loader, Searchbar } from 'components';
+
 import { getContacts } from 'redux/contacts/operations';
 import { selectContacts, selectLoading } from 'redux/contacts/selectors';
+
 import { Typography } from '@mui/material';
-import WithAuthRedirect from 'HOC/WithAuthRedirect';
 
 function ContactsPage() {
   const contacts = useSelector(selectContacts);

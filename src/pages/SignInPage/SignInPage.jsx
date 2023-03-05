@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
+
 import { loginUser } from 'redux/user/operations';
-import { useNavigate } from 'react-router-dom';
 import { selectIsLoggedIn } from 'redux/user/selectors';
 
 export default function SignInPage() {

@@ -45,13 +45,6 @@ img {
 svg {
 	fill: currentColor;
 }
-address {
-	font-style: normal;
-}
-/* input,
-label:not([type="checkbox"]) {
-	display: block;
-} */
 `;
 
 export default GlobalStyles;

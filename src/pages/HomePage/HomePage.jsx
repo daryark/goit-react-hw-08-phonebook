@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyledNavLink } from 'components/App/App.styled';
 import { Paper } from '@mui/material';
+
+import { StyledNavLink } from 'components/App/App.styled';
 
 export default function HomePage() {
   return (
