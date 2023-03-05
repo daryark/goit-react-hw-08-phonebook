@@ -14,8 +14,9 @@ import {
 import { getContacts } from 'redux/contacts/operations';
 import { selectContacts, selectLoading } from 'redux/contacts/selectors';
 import { Typography } from '@mui/material';
+import WithAuthRedirect from 'HOC/WithAuthRedirect';
 
-export default function ContactsPages() {
+function ContactsPage() {
   const contacts = useSelector(selectContacts);
   const loading = useSelector(selectLoading);
   const dispatch = useDispatch();
@@ -44,3 +45,4 @@ export default function ContactsPages() {
     </>
   );
 }
+export default WithAuthRedirect(ContactsPage, '/signin');

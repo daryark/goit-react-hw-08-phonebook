@@ -58,7 +58,9 @@ export const getCurrentUser = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const state = thunkApi.getState();
-      if (!state.userData.token) return;
+      if (state.userData.token === null) return;
+      console.log('token', state.userData.token);
+
       token.set(state.userData.token);
 
       const { data } = await axios.get('/users/current');

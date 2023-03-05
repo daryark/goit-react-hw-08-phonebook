@@ -5,8 +5,6 @@ import ContactPhoneRoundedIcon from '@mui/icons-material/ContactPhoneRounded';
 import { Box } from '@mui/system';
 
 import { Loader } from '../Loader/Loader';
-
-// import { getCurrentUser } from 'redux/user/operations';
 import { selectIsLoggedIn, selectUserData } from 'redux/user/selectors';
 
 import MediaQuery from 'styles/Root';
@@ -41,7 +39,7 @@ export default function Layout() {
               {isLoggedIn ? (
                 <>
                   <p>
-                    Hello <b>{userData.name}</b>
+                    Hello <b>{userData?.name}</b>
                   </p>
                   <div>
                     <StyledNavLink to={'/contacts'}>Contacts</StyledNavLink>

@@ -10,8 +10,7 @@ export default function HomePage() {
         contacts and delete if needed.
       </p>
       <p>
-        Please
-        <StyledNavLink to={'/signin'}> Sign In </StyledNavLink> or
+        Please <StyledNavLink to={'/signin'}> Sign In </StyledNavLink> or{' '}
         <StyledNavLink to={'/signup'}> Sign Up </StyledNavLink> to start.
       </p>
     </Paper>
