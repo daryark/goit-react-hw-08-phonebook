@@ -2,14 +2,16 @@ import React, { Suspense } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ContactPhoneRoundedIcon from '@mui/icons-material/ContactPhoneRounded';
+import { Box } from '@mui/system';
 
-import { Loader } from '../common/Loader/Loader';
+import { Loader } from '../Loader/Loader';
+
+// import { getCurrentUser } from 'redux/user/operations';
 import { selectIsLoggedIn, selectUserData } from 'redux/user/selectors';
 
 import MediaQuery from 'styles/Root';
 import { Container, Header, StyledNavLink } from 'components/App/App.styled';
 import { Logout } from 'components/Logout/Logout';
-import { Box } from '@mui/system';
 
 export default function Layout() {
   const isLoggedIn = useSelector(selectIsLoggedIn);

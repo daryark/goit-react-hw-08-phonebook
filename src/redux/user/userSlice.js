@@ -1,5 +1,10 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { loginUser, logoutUser, registerUser } from './operations';
+import {
+  getCurrentUser,
+  loginUser,
+  logoutUser,
+  registerUser,
+} from './operations';
 
 const initialState = {
   user: { name: null, email: null },
@@ -9,26 +14,8 @@ const initialState = {
   error: false,
   isLoading: true,
 };
-const extraActions = [registerUser, loginUser, logoutUser];
+const extraActions = [registerUser, loginUser, logoutUser, getCurrentUser];
 const getActions = type => extraActions.map(action => action[type]);
-
-const handlePending = state => {
-  state.error = false;
-  state.isLoading = true;
-};
-
-const handleRejected = state => {
-  state.error = true;
-  state.isLoading = false;
-};
-
-// const handleFulfilledLogin = (state, action) => {
-//   state.user = action.payload.user;
-//   state.token = action.payload.token;
-//   state.isLoggedIn = true;
-//   state.isLoading = false;
-//   state.error = false;
-// };
 
 const userSlice = createSlice({
   name: 'user',
@@ -56,6 +43,12 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = false;
       })
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+        state.error = false;
+      })
       // .addMatcher(
       //   isAnyOf(loginUser, registerUser).fulfilled,
       //   handleFulfilledLogin
@@ -65,5 +58,23 @@ const userSlice = createSlice({
       .addMatcher(isAnyOf(...getActions('rejected')), handleRejected);
   },
 });
+
+function handlePending(state) {
+  state.error = false;
+  state.isLoading = true;
+}
+
+function handleRejected(state) {
+  state.error = true;
+  state.isLoading = false;
+}
+
+// function handleFulfilledLogin (state, action)  {
+//   state.user = action.payload.user;
+//   state.token = action.payload.token;
+//   state.isLoggedIn = true;
+//   state.isLoading = false;
+//   state.error = false;
+// };
 
 export const userReducer = userSlice.reducer;

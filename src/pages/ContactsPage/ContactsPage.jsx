@@ -13,6 +13,7 @@ import {
 } from 'components';
 import { getContacts } from 'redux/contacts/operations';
 import { selectContacts, selectLoading } from 'redux/contacts/selectors';
+import { Typography } from '@mui/material';
 
 export default function ContactsPages() {
   const contacts = useSelector(selectContacts);
@@ -32,7 +33,9 @@ export default function ContactsPages() {
           <Searchbar />
 
           {!contacts.length && !loading && (
-            <p>You don't have contacts yet, add somebody!</p>
+            <Typography variant="h6" component="p" sx={{ color: '#d32f2f' }}>
+              You don't have contacts yet, add somebody!
+            </Typography>
           )}
           {Boolean(contacts.length) && <ContactList />}
         </div>

@@ -3,7 +3,7 @@ import { FaRegTrashAlt } from 'react-icons/fa';
 
 import { selectFilteredContacts } from 'redux/contacts/selectors';
 import { deleteContact } from 'redux/contacts/operations';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { ContactInfo, ContactItem } from './ContactList.styled';
 
 // import { ContactInfo, ContactItem, DeleteBtn } from './ContactList.styled';
@@ -21,11 +21,11 @@ export const ContactList = () => {
     <>
       {Boolean(filteredContacts.length) ? (
         <ul>
-          {filteredContacts.map(({ name, phone, id }) => (
+          {filteredContacts.map(({ name, number, id }) => (
             <ContactItem key={id}>
               <div>
                 <ContactInfo>{name}</ContactInfo>
-                <ContactInfo>{phone}</ContactInfo>
+                <ContactInfo>{number}</ContactInfo>
               </div>
               <Button
                 variant="outlined"
@@ -38,7 +38,9 @@ export const ContactList = () => {
           ))}
         </ul>
       ) : (
-        <p>Sorry, no matches found</p>
+        <Typography variant="h5" component="p" sx={{ color: '#d32f2f' }}>
+          Sorry, no matches found.
+        </Typography>
       )}
     </>
   );

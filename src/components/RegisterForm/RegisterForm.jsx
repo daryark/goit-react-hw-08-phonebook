@@ -21,6 +21,7 @@ import {
 
 export function RegisterForm({ onSubmit, isSignUpForm = false }) {
   const [showPassword, setShowPassword] = useState(false);
+
   const schema = yup
     .object({
       ...(isSignUpForm && { name: yup.string().min(2).max(20).required() }),
