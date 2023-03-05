@@ -10,9 +10,8 @@ const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
-  isRefreshing: false,
   error: false,
-  isLoading: true,
+  isLoading: false,
 };
 const extraActions = [registerUser, loginUser, logoutUser, getCurrentUser];
 const getActions = type => extraActions.map(action => action[type]);
@@ -49,13 +48,14 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = false;
       })
-      // .addMatcher(
-      //   isAnyOf(loginUser, registerUser).fulfilled,
-      //   handleFulfilledLogin
-      // )
 
       .addMatcher(isAnyOf(...getActions('pending')), handlePending)
       .addMatcher(isAnyOf(...getActions('rejected')), handleRejected);
+
+    // .addMatcher(
+    //   isAnyOf(loginUser, registerUser).fulfilled,
+    //   handleFulfilledLogin
+    // )
   },
 });
 
